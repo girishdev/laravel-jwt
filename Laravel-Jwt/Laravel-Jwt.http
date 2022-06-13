@@ -1,0 +1,43 @@
+# Registration / Creating an account
+POST http://127.0.0.1:8000/api/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Girish2",
+    "email": "girish2@gmail.com",
+    "password": "1234562",
+    "password_confirmation": "1234562"
+}
+
+###
+# User Login
+POST http://127.0.0.1:8000/api/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "girish2@gmail.com",
+    "password": "1234562"
+}
+
+###
+# Accessing an unprotected route
+GET http://127.0.0.1:8000/api/open
+Content-Type: application/json
+
+###
+# Access a protected endpoint
+GET http://127.0.0.1:8000/api/closed
+Content-Type: application/json
+Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU2NTYyMDgzOCwiZXhwIjoxNTY1NjI0NDM4LCJuYmYiOjE1NjU2MjA4MzgsImp0aSI6IkhBc0xNSW9xWVJsWDRzbVUiLCJzdWIiOjUsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.OOfZ8eOf3Qu7iOsXm0Nanx0Iz3yjYm5wi4NX6x-zQZk"
+
+###
+# Get the authenticated user data
+GET http://127.0.0.1:8000/api/user
+Content-Type: application/json
+Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU2NTYyMDgzOCwiZXhwIjoxNTY1NjI0NDM4LCJuYmYiOjE1NjU2MjA4MzgsImp0aSI6IkhBc0xNSW9xWVJsWDRzbVUiLCJzdWIiOjUsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.OOfZ8eOf3Qu7iOsXm0Nanx0Iz3yjYm5wi4NX6x-zQZk"
+
+###
+# Use invalid token to access a users data
+GET http://127.0.0.1:8000/api/user
+Content-Type: application/json
+Authorization: "Bearer thistokeniswrong"
